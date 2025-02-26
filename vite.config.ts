@@ -6,6 +6,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/e-plantShopping/",
   plugins: [
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react(),

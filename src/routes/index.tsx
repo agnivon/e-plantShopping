@@ -1,13 +1,6 @@
+import HomePage from "@/components/pages/home-page";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: HomePage,
 });
-
-function Index() {
-  return (
-    <div className="p-2">
-      <h3 className="text-2xl text-primary">Welcome Home!</h3>
-    </div>
-  );
-}
