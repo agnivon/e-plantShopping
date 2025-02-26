@@ -5,7 +5,7 @@ import ShoppingCartDialog from "./shopping-cart/shopping-cart-dialog";
 const Navbar = () => {
   return (
     <>
-      <nav className="w-full bg-primary flex items-center justify-between py-2 px-4 fixed top-0 left-0 right-0">
+      <nav className="w-full bg-primary flex items-center justify-between py-2 px-4 fixed top-0 left-0 right-0 z-50">
         <Link to="/">
           <div className="flex items-center gap-3 text-white">
             <img
