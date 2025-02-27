@@ -33,7 +33,7 @@ const ShoppingCartCard = ({ id }: { id: string }) => {
   return (
     <Card className="flex-row p-0 gap-0 overflow-clip">
       <div
-        className="flex-2 bg-no-repeat bg-center bg-cover"
+        className="flex-1 bg-no-repeat bg-center bg-cover"
         style={{ backgroundImage: `url('${product.image}')` }}
       ></div>
       <div className="py-6 space-y4 flex-3">

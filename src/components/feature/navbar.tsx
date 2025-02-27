@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import ShoppingCartDialog from "./shopping-cart/shopping-cart-dialog";
+import ShoppingCart from "./shopping-cart/shopping-cart";
 
 const Navbar = () => {
   return (
@@ -28,7 +28,7 @@ const Navbar = () => {
             </Button>
           </Link>
           <div className="ml-4">
-            <ShoppingCartDialog />
+            <ShoppingCart />
           </div>
         </div>
       </nav>

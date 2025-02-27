@@ -41,7 +41,7 @@ const ShoppingCartDialog = () => {
             {totalQuantity}
           </DialogDescription>
         </DialogHeader>
-        <div className="overflow-auto">
+        <div className="overflow-auto h-[70vh]">
           <ShoppingCartList ids={productIds} />
         </div>
         <DialogFooter className="!flex-col">

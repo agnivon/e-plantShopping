@@ -23,9 +23,11 @@ export const shoppingCartSlice = createSlice({
       action: PayloadAction<{ id: string; quantity: number }>
     ) => {
       const { id, quantity } = action.payload;
-      if (
-        (quantity < 0 && state.entities[id].quantity > 0) ||
-        (quantity > 0 && state.entities[id].quantity < 99)
+      if (state.entities[id].quantity + quantity <= 0) {
+        shoppingCartAdapter.removeOne(state, id);
+      } else if (
+        state.entities[id].quantity + quantity > 0 ||
+        state.entities[id].quantity + quantity <= 99
       ) {
         state.entities[id].quantity += quantity;
       }

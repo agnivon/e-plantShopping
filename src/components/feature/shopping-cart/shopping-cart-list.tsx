@@ -11,7 +11,7 @@ const ShoppingCartList = ({ ids }: { ids: string[] }) => {
     );
   }
   return (
-    <div className="flex flex-col gap-8 h-[70vh] py-2">
+    <div className="flex flex-col gap-8 py-2">
       {ids.map((e) => (
         <ShoppingCartCard id={e} key={e} />
       ))}

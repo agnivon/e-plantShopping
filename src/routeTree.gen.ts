@@ -15,6 +15,7 @@ import { Route as AboutImport } from './routes/about'
 import { Route as NavImport } from './routes/_nav'
 import { Route as IndexImport } from './routes/index'
 import { Route as NavProductsImport } from './routes/_nav/products'
+import { Route as NavCartImport } from './routes/_nav/cart'
 
 // Create/Update Routes
 
@@ -38,6 +39,12 @@ const IndexRoute = IndexImport.update({
 const NavProductsRoute = NavProductsImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => NavRoute,
+} as any)
+
+const NavCartRoute = NavCartImport.update({
+  id: '/cart',
+  path: '/cart',
   getParentRoute: () => NavRoute,
 } as any)
 
@@ -66,6 +73,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/_nav/cart': {
+      id: '/_nav/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof NavCartImport
+      parentRoute: typeof NavImport
+    }
     '/_nav/products': {
       id: '/_nav/products'
       path: '/products'
@@ -79,10 +93,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface NavRouteChildren {
+  NavCartRoute: typeof NavCartRoute
   NavProductsRoute: typeof NavProductsRoute
 }
 
 const NavRouteChildren: NavRouteChildren = {
+  NavCartRoute: NavCartRoute,
   NavProductsRoute: NavProductsRoute,
 }
 
@@ -92,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof NavRouteWithChildren
   '/about': typeof AboutRoute
+  '/cart': typeof NavCartRoute
   '/products': typeof NavProductsRoute
 }
 
@@ -99,6 +116,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof NavRouteWithChildren
   '/about': typeof AboutRoute
+  '/cart': typeof NavCartRoute
   '/products': typeof NavProductsRoute
 }
 
@@ -107,15 +125,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_nav': typeof NavRouteWithChildren
   '/about': typeof AboutRoute
+  '/_nav/cart': typeof NavCartRoute
   '/_nav/products': typeof NavProductsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/about' | '/products'
+  fullPaths: '/' | '' | '/about' | '/cart' | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/about' | '/products'
-  id: '__root__' | '/' | '/_nav' | '/about' | '/_nav/products'
+  to: '/' | '' | '/about' | '/cart' | '/products'
+  id: '__root__' | '/' | '/_nav' | '/about' | '/_nav/cart' | '/_nav/products'
   fileRoutesById: FileRoutesById
 }
 
@@ -152,11 +171,16 @@ export const routeTree = rootRoute
     "/_nav": {
       "filePath": "_nav.tsx",
       "children": [
+        "/_nav/cart",
         "/_nav/products"
       ]
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/_nav/cart": {
+      "filePath": "_nav/cart.tsx",
+      "parent": "/_nav"
     },
     "/_nav/products": {
       "filePath": "_nav/products.tsx",

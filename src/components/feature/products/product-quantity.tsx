@@ -38,7 +38,7 @@ const ProductQuantity = ({ id }: { id: string }) => {
     <div className="flex gap-2 items-center">
       <Button
         onClick={handleDecrease}
-        disabled={quantity <= 1}
+        disabled={quantity <= 0}
         className="size-6"
       >
         <MinusIcon />
